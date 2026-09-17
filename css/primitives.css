@@ -1,0 +1,122 @@
+/* ========================================================================= */
+/* design-tokens.tokens.json — PRIMITIVE COLOUR PALETTES                      */
+/* ========================================================================= */
+/*                                                                            */
+/* These are the FOUNDATION colour values of the design system.               */
+/*                                                                            */
+/* IMPORTANT: Primitive colours must NOT be applied directly to UI elements.  */
+/* They exist solely as the raw palette from which COLOUR ROLES (semantic     */
+/* tokens) are derived. Always consume the corresponding --role-* variable    */
+/* in your component styles instead of these.                                 */
+/*                                                                            */
+/* To re-skin the UI, re-point the role tokens in roles.css to different      */
+/* primitive swatches — no component code needs to change.                    */
+/* ========================================================================= */
+
+:root {
+
+  /* --- KEY COLOUR GROUP --- */
+  --primitive-error-key-colour: #ff0000;
+  --primitive-neutral-key-colour: #1b1616;
+  --primitive-neutral-variant-key-colour: #423636;
+  --primitive-primary-key-colour: #2215d6;
+  --primitive-secondary-key-colour: #1b11ab;
+  --primitive-tertiary-key-colour: #3c2feb;
+
+  /* --- PRIMARY COLOUR PALETTE --- */
+  --primitive-primary-0: #000000;
+  --primitive-primary-10: #07052e;
+  --primitive-primary-20: #0f095d;
+  --primitive-primary-30: #160e8b;
+  --primitive-primary-40: #1d12ba;
+  --primitive-primary-50: #2517e8;
+  --primitive-primary-60: #5045ed;
+  --primitive-primary-70: #7c74f1;
+  --primitive-primary-80: #a8a2f6;
+  --primitive-primary-90: #d3d1fa;
+  --primitive-primary-95: #e9e8fd;
+  --primitive-primary-98: #f6f6fe;
+  --primitive-primary-99: #fbfaff;
+  --primitive-primary-100: #ffffff;
+
+  /* --- SECONDARY COLOUR PALETTE --- */
+  --primitive-secondary0: #000000;
+  --primitive-secondary10: #07052e;
+  --primitive-secondary20: #0f095d;
+  --primitive-secondary30: #160e8b;
+  --primitive-secondary40: #1d12ba;
+  --primitive-secondary50: #2517e8;
+  --primitive-secondary60: #5045ed;
+  --primitive-secondary70: #7c74f1;
+  --primitive-secondary80: #a8a2f6;
+  --primitive-secondary90: #d3d1fa;
+  --primitive-secondary95: #e9e8fd;
+  --primitive-secondary98: #f6f6fe;
+  --primitive-secondary99: #fcfcfc;
+  --primitive-secondary100: #ffffff;
+
+  /* --- TERTIARY COLOUR PALETTE --- */
+  --primitive-tertiary-0: #000000;
+  --primitive-tertiary-10: #21194e;
+  --primitive-tertiary-20: #0f095d;
+  --primitive-tertiary-30: #160d8c;
+  --primitive-tertiary-40: #1e12ba;
+  --primitive-tertiary-50: #2516e9;
+  --primitive-tertiary-60: #5145ed;
+  --primitive-tertiary-70: #8275f0;
+  --primitive-tertiary-80: #a8a2f6;
+  --primitive-tertiary-90: #d3d0fb;
+  --primitive-tertiary-95: #e9e8fd;
+  --primitive-tertiary-98: #f6f6fe;
+  --primitive-tertiary-99: #fbfaff;
+  --primitive-tertiary-100: #ffffff;
+
+  /* --- NEUTRAL COLOUR PALETTE --- */
+  --primitive-neutral-0: #000000;
+  --primitive-neutral-10: #1b1616;
+  --primitive-neutral-20: #382e2e;
+  --primitive-neutral-30: #534646;
+  --primitive-neutral-40: #6f5d5d;
+  --primitive-neutral-50: #8b7474;
+  --primitive-neutral-60: #a29090;
+  --primitive-neutral-70: #b9acac;
+  --primitive-neutral-80: #cccccc;
+  --primitive-neutral-90: #e8e3e3;
+  --primitive-neutral-95: #f3f1f1;
+  --primitive-neutral-98: #faf9f9;
+  --primitive-neutral-99: #fdfcfc;
+  --primitive-neutral-100: #ffffff;
+
+  /* --- NEUTRAL VARIANT COLOUR PALETTE --- */
+  --primitive-neutral-variant-0: #000000;
+  --primitive-neutral-variant-10: #1c1717;
+  --primitive-neutral-variant-20: #3d2929;
+  --primitive-neutral-variant-30: #544545;
+  --primitive-neutral-variant-40: #705c5c;
+  --primitive-neutral-variant-50: #8c7373;
+  --primitive-neutral-variant-60: #a38f8f;
+  --primitive-neutral-variant-70: #baabab;
+  --primitive-neutral-variant-80: #d1c7c7;
+  --primitive-neutral-variant-90: #e8e3e3;
+  --primitive-neutral-variant-95: #f3f1f1;
+  --primitive-neutral-variant-98: #fbfbfb;
+  --primitive-neutral-variant-99: #fdfcfc;
+  --primitive-neutral-variant-100: #ffffff;
+
+  /* --- ERROR COLOUR PALETTE --- */
+  --primitive-error-0: #000000;
+  --primitive-error-10: #330000;
+  --primitive-error-20: #660000;
+  --primitive-error-30: #990000;
+  --primitive-error-40: #cc0000;
+  --primitive-error-50: #ff0000;
+  --primitive-error-60: #ff3333;
+  --primitive-error-70: #ff6666;
+  --primitive-error-80: #ff9999;
+  --primitive-error-90: #ffcccc;
+  --primitive-error-95: #ffe5e5;
+  --primitive-error-98: #fff5f5;
+  --primitive-error-99: #fffafa;
+  --primitive-error-100: #ffffff;
+
+}

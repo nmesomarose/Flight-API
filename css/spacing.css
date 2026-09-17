@@ -1,0 +1,15 @@
+/* ========================================================================= */
+/* design-tokens.tokens.json — SPACING SCALE                                 */
+/* ========================================================================= */
+
+:root {
+
+  --spacing-no-spacing: 0px;
+  --spacing-extra-small-spacing: 4px;
+  --spacing-small-spacing: 8px;
+  --spacing-medium-spacing: 12px;
+  --spacing-base-spacing: 16px;
+  --spacing-extra-large-spacing: 24px;
+  --spacing-large-spacing: 18px;
+  --spacing-very-large-spacing: 32px;
+}

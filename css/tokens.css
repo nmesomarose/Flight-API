@@ -1,0 +1,24 @@
+/* ========================================================================= */
+/* design-tokens — Master CSS Custom Properties                               */
+/* ========================================================================= */
+/*                                                                            */
+/* This file imports all token categories in the correct dependency order:    */
+/*                                                                            */
+/*   1. Primitives  — Raw palettes (reference only; never apply directly)     */
+/*   2. Roles       — Semantic tokens (consume these in components)           */
+/*   3. Spacing     — Layout spacing scale                                    */
+/*   4. Typography  — Text style presets                                      */
+/*   5. Effects     — Shadows                                                 */
+/*                                                                            */
+/* Usage in your project:                                                     */
+/*   <link rel="stylesheet" href="css/tokens.css">                            */
+/*                                                                            */
+/* Or in a CSS file:                                                          */
+/*   @import url('css/tokens.css');                                           */
+/* ========================================================================= */
+
+@import url("primitives.css");
+@import url("roles.css");
+@import url("spacing.css");
+@import url("typography.css");
+@import url("effects.css");

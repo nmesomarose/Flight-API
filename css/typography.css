@@ -1,0 +1,207 @@
+/* ========================================================================= */
+/* design-tokens.tokens.json — TYPOGRAPHY PRESETS                             */
+/* ========================================================================= */
+/*                                                                            */
+/* Each typography style exposes its sub-properties as individual CSS         */
+/* custom properties so you can compose styles as needed, or consume the     */
+/* individual properties directly.                                            */
+/* ========================================================================= */
+
+:root {
+
+  /* --- DISPLAY-LARGE --- */
+  --display-large-fontsize: 64px;
+  --display-large-fontfamily: DM Sans;
+  --display-large-fontweight: 500;
+  --display-large-fontstyle: normal;
+  --display-large-fontstretch: normal;
+  --display-large-letterspacing: -4px;
+  --display-large-lineheight: 96px;
+  --display-large-textdecoration: none;
+  --display-large-textcase: normal;
+  --display-large-paragraphindent: 0px;
+  --display-large-paragraphspacing: 0px;
+
+  /* --- DISPLAY-MEDIUM --- */
+  --display-medium-fontsize: 50px;
+  --display-medium-fontfamily: DM Sans;
+  --display-medium-fontweight: 500;
+  --display-medium-fontstyle: normal;
+  --display-medium-fontstretch: normal;
+  --display-medium-letterspacing: -3px;
+  --display-medium-lineheight: 75px;
+  --display-medium-textdecoration: none;
+  --display-medium-textcase: normal;
+  --display-medium-paragraphindent: 0px;
+  --display-medium-paragraphspacing: 0px;
+
+  /* --- DISPLAY-SMALL --- */
+  --display-small-fontsize: 40px;
+  --display-small-fontfamily: DM Sans;
+  --display-small-fontweight: 500;
+  --display-small-fontstyle: normal;
+  --display-small-fontstretch: normal;
+  --display-small-letterspacing: 0px;
+  --display-small-lineheight: 60px;
+  --display-small-textdecoration: none;
+  --display-small-textcase: normal;
+  --display-small-paragraphindent: 0px;
+  --display-small-paragraphspacing: 0px;
+
+  /* --- HEADLINE-LARGE --- */
+  --headline-large-fontsize: 32px;
+  --headline-large-fontfamily: DM Sans;
+  --headline-large-fontweight: 500;
+  --headline-large-fontstyle: normal;
+  --headline-large-fontstretch: normal;
+  --headline-large-letterspacing: -1px;
+  --headline-large-lineheight: 48px;
+  --headline-large-textdecoration: none;
+  --headline-large-textcase: normal;
+  --headline-large-paragraphindent: 0px;
+  --headline-large-paragraphspacing: 0px;
+
+  /* --- HEADLINE-MEDIUM --- */
+  --headline-medium-fontsize: 28px;
+  --headline-medium-fontfamily: DM Sans;
+  --headline-medium-fontweight: 500;
+  --headline-medium-fontstyle: normal;
+  --headline-medium-fontstretch: normal;
+  --headline-medium-letterspacing: -1px;
+  --headline-medium-lineheight: 42px;
+  --headline-medium-textdecoration: none;
+  --headline-medium-textcase: normal;
+  --headline-medium-paragraphindent: 0px;
+  --headline-medium-paragraphspacing: 0px;
+
+  /* --- HEADLINE-SMALL --- */
+  --headline-small-fontsize: 24px;
+  --headline-small-fontfamily: DM Sans;
+  --headline-small-fontweight: 500;
+  --headline-small-fontstyle: normal;
+  --headline-small-fontstretch: normal;
+  --headline-small-letterspacing: -1px;
+  --headline-small-lineheight: 36px;
+  --headline-small-textdecoration: none;
+  --headline-small-textcase: normal;
+  --headline-small-paragraphindent: 0px;
+  --headline-small-paragraphspacing: 0px;
+
+  /* --- TITLE-LARGE --- */
+  --title-large-fontsize: 22px;
+  --title-large-fontfamily: DM Sans;
+  --title-large-fontweight: 500;
+  --title-large-fontstyle: normal;
+  --title-large-fontstretch: normal;
+  --title-large-letterspacing: -1px;
+  --title-large-lineheight: 33px;
+  --title-large-textdecoration: none;
+  --title-large-textcase: normal;
+  --title-large-paragraphindent: 0px;
+  --title-large-paragraphspacing: 0px;
+
+  /* --- TITLE-MEDIUM --- */
+  --title-medium-fontsize: 16px;
+  --title-medium-fontfamily: DM Sans;
+  --title-medium-fontweight: 600;
+  --title-medium-fontstyle: normal;
+  --title-medium-fontstretch: normal;
+  --title-medium-letterspacing: -0.85px;
+  --title-medium-lineheight: 24px;
+  --title-medium-textdecoration: none;
+  --title-medium-textcase: normal;
+  --title-medium-paragraphindent: 0px;
+  --title-medium-paragraphspacing: 0px;
+
+  /* --- TITLE-SMALL --- */
+  --title-small-fontsize: 14px;
+  --title-small-fontfamily: DM Sans;
+  --title-small-fontweight: 600;
+  --title-small-fontstyle: normal;
+  --title-small-fontstretch: normal;
+  --title-small-letterspacing: -0.75px;
+  --title-small-lineheight: 21px;
+  --title-small-textdecoration: none;
+  --title-small-textcase: normal;
+  --title-small-paragraphindent: 0px;
+  --title-small-paragraphspacing: 0px;
+
+  /* --- BODY-LARGE --- */
+  --body-large-fontsize: 16px;
+  --body-large-fontfamily: DM Sans;
+  --body-large-fontweight: 500;
+  --body-large-fontstyle: normal;
+  --body-large-fontstretch: normal;
+  --body-large-letterspacing: -0.8px;
+  --body-large-lineheight: 24px;
+  --body-large-textdecoration: none;
+  --body-large-textcase: normal;
+  --body-large-paragraphindent: 0px;
+  --body-large-paragraphspacing: 0px;
+
+  /* --- BODY-MEDIUM --- */
+  --body-medium-fontsize: 14px;
+  --body-medium-fontfamily: DM Sans;
+  --body-medium-fontweight: 500;
+  --body-medium-fontstyle: normal;
+  --body-medium-fontstretch: normal;
+  --body-medium-letterspacing: 0.8px;
+  --body-medium-lineheight: 21px;
+  --body-medium-textdecoration: none;
+  --body-medium-textcase: normal;
+  --body-medium-paragraphindent: 0px;
+  --body-medium-paragraphspacing: 0px;
+
+  /* --- BODY-SMALL --- */
+  --body-small-fontsize: 12px;
+  --body-small-fontfamily: DM Sans;
+  --body-small-fontweight: 500;
+  --body-small-fontstyle: normal;
+  --body-small-fontstretch: normal;
+  --body-small-letterspacing: -0.8px;
+  --body-small-lineheight: 18px;
+  --body-small-textdecoration: none;
+  --body-small-textcase: normal;
+  --body-small-paragraphindent: 0px;
+  --body-small-paragraphspacing: 0px;
+
+  /* --- LABEL-LARGE --- */
+  --label-large-fontsize: 14px;
+  --label-large-fontfamily: DM Sans;
+  --label-large-fontweight: 500;
+  --label-large-fontstyle: normal;
+  --label-large-fontstretch: normal;
+  --label-large-letterspacing: -0.9px;
+  --label-large-lineheight: 21px;
+  --label-large-textdecoration: none;
+  --label-large-textcase: normal;
+  --label-large-paragraphindent: 0px;
+  --label-large-paragraphspacing: 0px;
+
+  /* --- LABEL-SMALL --- */
+  --label-small-fontsize: 11px;
+  --label-small-fontfamily: DM Sans;
+  --label-small-fontweight: 500;
+  --label-small-fontstyle: normal;
+  --label-small-fontstretch: normal;
+  --label-small-letterspacing: -0.9px;
+  --label-small-lineheight: 16.5px;
+  --label-small-textdecoration: none;
+  --label-small-textcase: normal;
+  --label-small-paragraphindent: 0px;
+  --label-small-paragraphspacing: 0px;
+
+  /* --- LABEL-MEDIUM --- */
+  --label-medium-fontsize: 12px;
+  --label-medium-fontfamily: DM Sans;
+  --label-medium-fontweight: 500;
+  --label-medium-fontstyle: normal;
+  --label-medium-fontstretch: normal;
+  --label-medium-letterspacing: -0.9px;
+  --label-medium-lineheight: 18px;
+  --label-medium-textdecoration: none;
+  --label-medium-textcase: normal;
+  --label-medium-paragraphindent: 0px;
+  --label-medium-paragraphspacing: 0px;
+
+}

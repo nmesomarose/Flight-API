@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flight Booking API — minimal consumer</title>
+  <!--
+    Minimal external consumer (consumer-client.md). Placeholder only:
+    - MUST demonstrate exactly one success path (create a Booking) and one
+      failure path (attempt a Booking with invalid input and display the
+      resulting API error),
+    - MAY display flight data as a baseline read capability (PRD §5 item 7),
+    - MUST NOT expand into a fuller booking experience.
+  -->
+</head>
+<body>
+  <h1>Flight Booking API — minimal consumer</h1>
+  <p>
+    This page is an external HTTP-only consumer of the Flight Booking API. It
+    never imports API internals and never touches the database
+    (consumer-client.md).
+  </p>
+
+  <!-- Baseline read capability: flight data (PRD §5 item 7) -->
+  <h2>Flights</h2>
+  <ul id="flight-list"></ul>
+
+  <!-- The one success path: create a Booking (PRD §5 item 7) -->
+  <h2>Create a Booking</h2>
+  <form id="booking-form">
+    <label for="customer-select">Customer</label>
+    <select id="customer-select" required></select>
+
+    <label for="flight-select">Flight</label>
+    <select id="flight-select" required></select>
+
+    <label for="seats">Seats</label>
+    <input id="seats" type="number" min="1" step="1" value="1" required />
+
+    <button type="submit">Create Booking</button>
+  </form>
+
+  <!-- Success/failure-path render target -->
+  <p id="result"></p>
+
+  <script src="app.js"></script>
+</body>
+</html>

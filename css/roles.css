@@ -1,0 +1,31 @@
+/* ========================================================================= */
+/* design-tokens.tokens.json — COLOUR ROLES (Semantic Tokens)                 */
+/* ========================================================================= */
+/*                                                                            */
+/* These are the SEMANTIC colour tokens that SHOULD be used in UI components. */
+/* Each role expresses an *intent* (e.g. primary, on-primary, error role)    */
+/* and maps to exactly one primitive swatch under the hood.                   */
+/*                                                                            */
+/* To re-skin the application, change the values in this file to point at     */
+/* different primitive swatches. Component code never needs to change.        */
+/* ========================================================================= */
+
+:root {
+
+  --color-primary: #2215d6;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d3d1fa;
+  --color-on-primary-container: #160e8b;
+  --color-secondary: #1d12ba;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d3d1fa;
+  --color-on-secondary-container: #160e8b;
+  --color-tertiary: #1e12ba;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #d3d0fb;
+  --color-on-tertiary-container: #160d8c;
+  --color-error-role: #cc0000;
+  --color-on-error-role: #ffffff;
+  --color-error-container: #ffcccc;
+  --color-on-error-container: #990000;
+}

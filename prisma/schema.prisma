@@ -1,0 +1,78 @@
+// Prisma schema for the Flight Booking REST API.
+// Governed by the PRD §3 and .agents/rules/resources-and-relationships.md.
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "cjs"
+  importFileExtension = ""
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// DECISION (recorded in docs/api.md): the API payload uses camelCase field
+// names, matching Prisma's generated-client convention. Internal database
+// column names remain snake_case (PRD §3 field names); the API maps them.
+// Any future endpoint MUST expose camelCase too (identity-and-contract.md).
+
+// TODO(open decision, .agents/rules/resources-and-relationships.md):
+// No unique constraints are declared here beyond primary keys. The PRD does
+// not require uniqueness on any field; seeding idempotency is handled at the
+// application layer via stable natural keys (see the idempotent-resource-seeding
+// skill), not via database constraints.
+
+model Airline {
+  id      String @id @default(uuid())
+  name    String
+  code    String
+  country String
+
+  flights Flight[]
+}
+
+model Flight {
+  id             String   @id @default(uuid())
+  airline_id     String
+  airline        Airline  @relation(fields: [airline_id], references: [id], onDelete: Restrict)
+  flight_number  String
+  origin         String
+  destination    String
+  departure_time DateTime
+  arrival_time   DateTime
+  price          Decimal
+  seat_capacity  Int
+
+  bookings Booking[]
+}
+
+model Customer {
+  id           String  @id @default(uuid())
+  full_name    String
+  email        String
+  phone_number String?
+
+  bookings Booking[]
+}
+
+model Booking {
+  id               String   @id @default(uuid())
+  customer_id      String
+  customer         Customer @relation(fields: [customer_id], references: [id], onDelete: Restrict)
+  flight_id        String
+  flight           Flight   @relation(fields: [flight_id], references: [id], onDelete: Restrict)
+  booking_timestamp DateTime
+  seats_booked     Int      @default(1)
+}
+
+// Referential integrity notes (see .agents/rules/resources-and-relationships.md
+// and .agents/rules/booking-specific.md):
+// - Airline -> Flight, Flight -> Booking, Customer -> Booking use onDelete:
+//   Restrict so deleting a parent with dependents fails at the database layer.
+//   Handlers must map that rejection to a 4xx response (implementation step,
+//   referential-integrity-guard skill); no cascading deletes.
+// - Booking is deliberately the leaf node: nothing references it, so it is
+//   always deletable.
+// - seat_capacity and seats_booked are informational only; no capacity
+//   validation is modeled here (PRD §5 item 5).

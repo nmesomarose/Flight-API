@@ -1,0 +1,10 @@
+/* ========================================================================= */
+/* design-tokens.tokens.json — EFFECTS (Shadows)                              */
+/* ========================================================================= */
+
+:root {
+
+  --effect-hard-shadow: drop-shadow(4px 6px 8px #00000052);
+  --effect-medium-shadoww: drop-shadow(2px 4px 6px #00000047);
+  --effect-soft-shadow: drop-shadow(2px 2px 20px #0000001f);
+}
