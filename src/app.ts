@@ -7,6 +7,7 @@ import { errorEnvelope } from './shared/envelope';
 export function createApp(config: AppConfig) {
   const app = express();
 
+  app.set('trust proxy', 1);
   app.disable('x-powered-by');
   app.use(express.json());
   app.use(createRateLimiter(config.rateLimit));
