@@ -10,6 +10,10 @@ import {
   BOOKINGS,
 } from '../../prisma/seed/seed';
 
+// Each run now seeds ~1,800 records (few-hundred scale), so raise the
+// default per-test timeout to keep the seed assertions from timing out.
+jest.setTimeout(60000);
+
 const DB_URL = testDatabaseUrl();
 
 beforeEach(async () => {
