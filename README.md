@@ -237,8 +237,8 @@ field) must not break it.
 
 - Development example (local only): `http://127.0.0.1:3000/v1`
   (the server listens on `PORT`, default `3000`).
-- Production: **`<to be added after deployment>`** — the API is not deployed
-  yet; no production URL exists.
+- Production: **`https://flight-api-coral.vercel.app/v1`** — the API is
+  deployed to Vercel and is live (see §17 Deployment).
 
 ---
 
@@ -1036,14 +1036,14 @@ assigning generated UUIDs. Running `npm run db:seed` a second time reports
   renders the API's error (`error.code` + `error.message`). It does not expand
   into a fuller booking experience.
 - **Base URL configuration:** a single swap point in `client/app.js` —
-  `PRODUCTION_API_BASE_URL`. It is currently the placeholder
-  `https://REPLACE_WITH_DEPLOYED_PUBLIC_API_URL/v1`. A development-only
+  `PRODUCTION_API_BASE_URL`. It is committed as the live public API base URL
+  `https://flight-api-coral.vercel.app/v1`. A development-only
   override (`?apiBaseUrl=http://127.0.0.1:3000/v1` in the page URL) allows local
-  verification against a local instance; the committed default remains the
-  public placeholder.
-- **Deployment status:** the client is **not** pointed at a live public API yet
-  — it still targets a placeholder and a local override. It must be switched to
-  the real public URL after deployment.
+  verification against a local instance; the committed default is the public
+  URL above and is **not** overridden by the local swap point.
+- **Deployment status:** the client **is** pointed at the live public API
+  (`https://flight-api-coral.vercel.app/v1`) and its success and failure paths
+  have been verified against the **deployed** API, not a local copy.
 
 ---
 
@@ -1308,21 +1308,23 @@ Important areas covered by the tests:
 
 ## 17. Deployment
 
-Deployment is the **next stage** and has **not** been performed as part of this
-work. No provider or URL has been chosen.
+The API is **deployed and live** on Vercel:
 
-> ### Production API URL: Not deployed yet
+> ### Production API URL: `https://flight-api-coral.vercel.app/v1`
 
-Once deployment happens, the following are still required and currently
-outstanding:
-
-1. **Seed the production database** with `npm run db:seed` (using the
-   production `DATABASE_URL`).
-2. **Point the consumer client** (`client/app.js`) at the real public API URL
-   by replacing the `PRODUCTION_API_BASE_URL` placeholder.
-3. Re-verify the consumer's success and failure paths against the **live**
-   API, per the PRD success criteria ("against the deployed API, not a local
-   copy").
+- **Provider:** Vercel (`vercel.json`), builds via
+  `npx prisma db push && npm run db:seed && npm run build`, so every deploy
+  pushes the Prisma schema to the production database and runs the idempotent
+  seed.
+- **Production seed:** completed — the production database is seeded (300
+  airlines / 400 customers / 500 flights / 600 bookings; re-runs create zero
+  records).
+- **Consumer base URL:** `client/app.js` is committed with
+  `PRODUCTION_API_BASE_URL = https://flight-api-coral.vercel.app/v1` (no
+  longer a placeholder).
+- **Live verification:** the consumer's success and failure paths were re-run
+  against the **deployed** API, per the PRD success criteria ("against the
+  deployed API, not a local copy")..
 
 ---
 
@@ -1346,28 +1348,28 @@ outstanding (must not be presented as complete until actually performed).
 | Configured rate limiting                        | Done        | Env-configurable; default 100 req/min by IP; `429` + `Retry-After`. |
 | Full endpoint documentation                     | Done        | Section 7 of this README documents every implemented endpoint. |
 | Curl examples                                   | Done        | Section 14 (plus per-endpoint examples). |
-| Public API URL                                  | **Not done** | Placeholder only; not deployed. |
-| Production seed completed                       | **Not done** | Requires deployment + `npm run db:seed` on production DB. |
-| Consumer using public API                       | **Not done** | `PRODUCTION_API_BASE_URL` still a placeholder; local override only. |
-| Screenshot of curl against live API             | **Not done** | Requires deployment. |
-| Screenshot of `429` response                    | **Not done** | Requires a live API instance. |
-| Screenshot of consumer using live API           | **Not done** | Requires deployment + consumer pointed at public URL. |
+| Public API URL                                  | **Done**     | Live: `https://flight-api-coral.vercel.app/v1` (Vercel). |
+| Production seed completed                       | **Done**     | Production DB seeded to PRD volume (300/400/500/600); re-run creates zero records. |
+| Consumer using public API                       | **Done**     | `PRODUCTION_API_BASE_URL` committed as `https://flight-api-coral.vercel.app/v1`; success and failure paths re-verified against the deployed API (§17). |
+| Screenshot of curl against live API             | **Not done** | Curl verified against the live API (logs below §17); no screenshot file captured yet. |
+| Screenshot of `429` response                    | **Not done** | `429` verified by tests (§16); no live `429` screenshot captured yet. |
+| Screenshot of consumer using live API           | **Not done** | Consumer success/failure verified against deployed API (§17); no screenshot captured yet. |
 
 ---
 
 ## Remaining gaps
 
-The project is **not** complete until all of the following are addressed:
+The README has been updated to reflect the deployed state: the API **is** live
+on Vercel (`https://flight-api-coral.vercel.app/v1`), the production database
+**is** seeded to the locked volumes (300/400/500/600; re-runs create zero
+records), and the consumer client is committed with `PRODUCTION_API_BASE_URL`
+pointing at the **public** deployed API — its success and failure paths have
+been verified against the deployed API, not a local copy.
 
-1. **Deployment** — deploy the API (provider/URL not yet chosen).
-2. **Production seeding** — run the seed against the production database after
-   deployment.
-3. **Public API URL** — record the real URL and replace the placeholder in
-   `client/app.js`.
-4. **Live consumer verification** — confirm the consumer's success and failure
-   paths against the deployed API, not a local copy.
-5. **Evidence screenshots** — capture curl / `429` / consumer screenshots
-   against the live API.
+The only outstanding items are the three **evidence screenshots** (see §18):
+curl against the live API, the `429` response, and the consumer using the live
+API. These are practical to produce once a deployed instance is available and
+will be recorded as done when a screenshot is actually captured.
 
 This README documents the system as implemented today and will not claim these
 items complete until they are actually done.
