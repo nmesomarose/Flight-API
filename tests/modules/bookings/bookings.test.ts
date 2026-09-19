@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { createApp } from '../../../src/app';
+import { createApp } from '../../../src/app-factory';
 import { resetDatabase, testAppConfig } from '../../helpers/testDb';
 
 const appConfig = testAppConfig();

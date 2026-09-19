@@ -1,6 +1,6 @@
 import request from 'supertest';
 import type { AppConfig } from '../../src/config';
-import { createApp } from '../../src/app';
+import { createApp } from '../../src/app-factory';
 
 function testConfig(rateLimitMax = 100): AppConfig {
   return {

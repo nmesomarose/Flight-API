@@ -926,7 +926,7 @@ HTTP/1.1 400 Bad Request
 ## 10. Rate Limiting
 
 Rate limiting is applied **globally to every request** before routing
-(`src/app.ts` → `src/middleware/rateLimiter.ts`), using `express-rate-limit`
+(`src/app-factory.ts` → `src/middleware/rateLimiter.ts`), using `express-rate-limit`
 keyed by the requester's IP address (its default key generator). It is **not**
 scoped per API key or per authenticated client, and no client-identification or
 API-key-issuance system exists.
