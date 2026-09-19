@@ -20,7 +20,7 @@
 // For local development the same client is verified against a local instance
 // by passing the local base URL explicitly (see API_BASE_URL override below);
 // that override never replaces the committed public URL.
-const PRODUCTION_API_BASE_URL = 'https://REPLACE_WITH_DEPLOYED_PUBLIC_API_URL/v1';
+const PRODUCTION_API_BASE_URL = 'https://flight-api-coral.vercel.app/v1';
 
 // Development-only override. When the page is opened with
 //   ?apiBaseUrl=http://127.0.0.1:3000/v1
