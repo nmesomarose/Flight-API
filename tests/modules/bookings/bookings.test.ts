@@ -79,6 +79,22 @@ describe('Bookings CRUD', () => {
     expect(res.body.data.seatsBooked).toBe(1);
   });
 
+  it('returns 400 when seatsBooked is not a positive integer', async () => {
+    const customerId = await createCustomer();
+    const flightId = await createFlight();
+    // seatsBooked is documented as a positive integer (README §7, PRD §3):
+    // zero, negatives, decimals, and non-numeric values are all rejected.
+    for (const seatsBooked of [0, -1, 1.5, 'two']) {
+      const res = await request(app)
+        .post('/v1/bookings')
+        .send(bookingBody({ customerId, flightId, seatsBooked }));
+      expect(res.status).toBe(400);
+      expect(res.body.error.code).toBe('BAD_REQUEST');
+      expect(res.body.error.message).toBe('Field "seatsBooked" must be a positive integer');
+      expect(res.body.data).toBeUndefined();
+    }
+  });
+
   it('generates non-sequential unique IDs across creates', async () => {
     const customerId = await createCustomer();
     const flightId = await createFlight();

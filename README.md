@@ -1278,7 +1278,7 @@ system.
   4. `tests/modules/customers/`
   5. `tests/modules/bookings/`
   6. `tests/seeding/`
-- **Current count: 6 suites, 98 tests — all passing** (verified with
+- **Current count: 6 suites, 99 tests — all passing** (verified with
   `npm test -- --runInBand`).
 - **How to run:** `npm test -- --runInBand`.
 - **Typecheck:** `npm run typecheck`.
