@@ -79,20 +79,37 @@ describe('Bookings CRUD', () => {
     expect(res.body.data.seatsBooked).toBe(1);
   });
 
-  it('returns 400 when seatsBooked is not a positive integer', async () => {
+  // seatsBooked is documented as a positive integer (README §7, PRD §3) and is
+  // stored in a 32-bit integer column, so zero, negatives, decimals, non-numeric
+  // values, and integers beyond the column's range are all rejected at the
+  // boundary rather than reaching the data layer as a 500 (data-integrity.md).
+  it.each<[string, unknown]>([
+    ['zero', 0],
+    ['a negative integer', -1],
+    ['a decimal', 1.5],
+    ['a non-numeric string', 'two'],
+    ['an integer just above the 32-bit maximum', 2147483648],
+    ['a value far beyond the 32-bit maximum', 1e21],
+  ])('returns 400 when seatsBooked is %s', async (_label, seatsBooked) => {
     const customerId = await createCustomer();
     const flightId = await createFlight();
-    // seatsBooked is documented as a positive integer (README §7, PRD §3):
-    // zero, negatives, decimals, and non-numeric values are all rejected.
-    for (const seatsBooked of [0, -1, 1.5, 'two']) {
-      const res = await request(app)
-        .post('/v1/bookings')
-        .send(bookingBody({ customerId, flightId, seatsBooked }));
-      expect(res.status).toBe(400);
-      expect(res.body.error.code).toBe('BAD_REQUEST');
-      expect(res.body.error.message).toBe('Field "seatsBooked" must be a positive integer');
-      expect(res.body.data).toBeUndefined();
-    }
+    const res = await request(app)
+      .post('/v1/bookings')
+      .send(bookingBody({ customerId, flightId, seatsBooked }));
+    expect(res.status).toBe(400);
+    expect(res.body.error.code).toBe('BAD_REQUEST');
+    expect(res.body.error.message).toBe('Field "seatsBooked" must be a positive integer');
+    expect(res.body.data).toBeUndefined();
+  });
+
+  it('accepts seatsBooked at the maximum value the integer column can store', async () => {
+    const customerId = await createCustomer();
+    const flightId = await createFlight();
+    const res = await request(app)
+      .post('/v1/bookings')
+      .send(bookingBody({ customerId, flightId, seatsBooked: 2147483647 }));
+    expect(res.status).toBe(201);
+    expect(res.body.data.seatsBooked).toBe(2147483647);
   });
 
   it('generates non-sequential unique IDs across creates', async () => {
