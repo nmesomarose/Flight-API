@@ -80,14 +80,19 @@ describe('Bookings CRUD', () => {
   });
 
   // seatsBooked is documented as a positive integer (README §7, PRD §3) and is
-  // stored in a 32-bit integer column, so zero, negatives, decimals, non-numeric
-  // values, and integers beyond the column's range are all rejected at the
-  // boundary rather than reaching the data layer as a 500 (data-integrity.md).
+  // stored in a 32-bit integer column, so zero, negatives, decimals, values that
+  // are not numbers at all, and integers beyond the column's range are all
+  // rejected at the boundary rather than reaching the data layer as a 500
+  // (data-integrity.md).
   it.each<[string, unknown]>([
     ['zero', 0],
     ['a negative integer', -1],
     ['a decimal', 1.5],
     ['a non-numeric string', 'two'],
+    ['null', null],
+    ['true', true],
+    ['false', false],
+    ['an empty array', []],
     ['an integer just above the 32-bit maximum', 2147483648],
     ['a value far beyond the 32-bit maximum', 1e21],
   ])('returns 400 when seatsBooked is %s', async (_label, seatsBooked) => {
