@@ -198,7 +198,7 @@ snake_case; see mapping notes below).
 | `customerId`       | UUID     | yes      | References an existing Customer.         |
 | `flightId`         | UUID     | yes      | References an existing Flight.           |
 | `bookingTimestamp` | ISO-8601 | yes      | UTC datetime.                            |
-| `seatsBooked`      | integer  | optional | Defaults to `1`. Positive integer.       |
+| `seatsBooked`      | integer  | optional | Defaults to `1`. Positive integer, at most `2147483647` (the 32-bit integer column's maximum). |
 
 Bookings have **no status field**. A booking's existence is its only state.
 
@@ -696,7 +696,7 @@ curl "http://127.0.0.1:3000/v1/bookings?flightId=<flight-uuid>"
   - `customerId` **(required, UUID)** — must reference an existing Customer.
   - `flightId` **(required, UUID)** — must reference an existing Flight.
   - `bookingTimestamp` **(required, ISO-8601)**.
-  - `seatsBooked` *(optional, positive integer)* — defaults to `1`.
+  - `seatsBooked` *(optional, positive integer, max `2147483647`)* — defaults to `1`.
 - **No capacity validation:** creation does not validate against the flight's
   remaining seats; `seat_capacity` is informational only and overbooking is not
   prevented.
@@ -1278,7 +1278,7 @@ system.
   4. `tests/modules/customers/`
   5. `tests/modules/bookings/`
   6. `tests/seeding/`
-- **Current count: 6 suites, 98 tests — all passing** (verified with
+- **Current count: 6 suites, 99 tests — all passing** (verified with
   `npm test -- --runInBand`).
 - **How to run:** `npm test -- --runInBand`.
 - **Typecheck:** `npm run typecheck`.

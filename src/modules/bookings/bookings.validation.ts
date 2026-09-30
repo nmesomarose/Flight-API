@@ -3,6 +3,11 @@ import { isValidUuid } from '../../shared/validation';
 
 export type ValidationError = { code: string; message: string } | null;
 
+// Upper bound for `seatsBooked`, matching the range of the backing column:
+// Postgres `integer` holds -2147483648..2147483647, and the field is validated
+// as positive, so 2147483647 is the largest acceptable value.
+const MAX_SEATS_BOOKED = 2147483647;
+
 // Allowed list-endpoint filter and sort parameters (list-endpoint-pagination-
 // filter-sort skill). Values are camelCase API names; columns are snake_case.
 export const BOOKING_FILTER_FIELDS: FilterFieldDef[] = [
@@ -43,7 +48,17 @@ export function validateBookingBody(body: unknown): ValidationError {
     return { code: 'BAD_REQUEST', message: 'Field "bookingTimestamp" must be a valid ISO 8601 datetime' };
   }
   if (b.seatsBooked !== undefined) {
-    if (typeof b.seatsBooked !== 'number' || !Number.isInteger(b.seatsBooked) || b.seatsBooked <= 0) {
+    // `seats_booked` is Prisma `Int`, which maps to a Postgres 32-bit
+    // `integer` (max 2147483647). Values above that are still JS integers, so
+    // they must be rejected here to satisfy the positive-integer contract
+    // instead of reaching the data layer and failing as a 500
+    // (data-integrity.md: invalid input MUST NOT produce a 500).
+    if (
+      typeof b.seatsBooked !== 'number' ||
+      !Number.isInteger(b.seatsBooked) ||
+      b.seatsBooked <= 0 ||
+      b.seatsBooked > MAX_SEATS_BOOKED
+    ) {
       return { code: 'BAD_REQUEST', message: 'Field "seatsBooked" must be a positive integer' };
     }
   }
